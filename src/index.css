@@ -1,0 +1,3 @@
+/* Base document container only; detailed styles via styled-components */
+:root { color-scheme: light; }
+#root { min-height: 100%; }

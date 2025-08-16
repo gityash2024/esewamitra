@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#146B66"/>
+      <stop offset="100%" stop-color="#2BBFA3"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="256" height="256" rx="64" ry="64" fill="url(#gradient)"/>
+  
+  <!-- Mitra Logo Design -->
+  <g transform="translate(128,128)">
+    <!-- Central diamond shape -->
+    <path d="M-40,-40 L0,-80 L40,-40 L0,0 Z" fill="#FFFFFF" opacity="0.9"/>
+    <path d="M-40,40 L0,0 L40,40 L0,80 Z" fill="#FFFFFF" opacity="0.7"/>
+    
+    <!-- Side elements -->
+    <circle cx="-60" cy="0" r="12" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="60" cy="0" r="12" fill="#FFFFFF" opacity="0.6"/>
+    
+    <!-- Text -->
+    <text x="0" y="0" text-anchor="middle" dominant-baseline="central" 
+          font-family="Montserrat, Arial, sans-serif" font-size="16" font-weight="800" 
+          fill="#FFFFFF">M</text>
+  </g>
+  
+  <!-- Bottom text -->
+  <text x="128" y="200" text-anchor="middle" dominant-baseline="middle" 
+        font-family="Montserrat, Arial, sans-serif" font-size="24" font-weight="700" 
+        fill="#FFFFFF">MITRA</text>
+</svg> 
