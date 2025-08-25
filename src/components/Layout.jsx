@@ -97,7 +97,34 @@ const NavItem = styled.li`
   position: relative;
   
   @media (max-width: ${p => p.theme.breakpoints.lg}) {
-    width: 100%;
+    border-bottom: 1px solid ${p => p.theme.colors.border};
+  }
+`
+
+const DropdownNavLink = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 20px;
+  color: ${p => p.theme.colors.text};
+  text-decoration: none;
+  font-weight: 500;
+  transition: color ${p => p.theme.transitions.base};
+  cursor: pointer;
+  position: relative;
+  
+  &:hover {
+    color: ${p => p.theme.colors.primary};
+  }
+  
+  span {
+    font-size: 12px;
+    transition: transform ${p => p.theme.transitions.base};
+  }
+  
+  @media (max-width: ${p => p.theme.breakpoints.lg}) {
+    padding: 16px 24px;
+    justify-content: space-between;
   }
 `
 
@@ -113,8 +140,9 @@ const BaseLinkStyles = `
   }
 `
 
-const NavA = styled(NavLink)`
+const NavA = styled(Link)`
   ${BaseLinkStyles}
+  text-decoration: none;
   &.active::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px;
     background: linear-gradient(90deg, ${p => p.theme.colors.primary}, ${p => p.theme.colors.accent}); border-radius: 2px; animation: ${underline} 220ms ease forwards; }
     
@@ -311,6 +339,50 @@ const Copyright = styled.div`
   color: ${p => p.theme.colors.mutedText}; font-size: 14px;
 `
 
+const ServicesDropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: ${p => p.theme.colors.surface};
+  border: 1px solid ${p => p.theme.colors.border};
+  border-radius: ${p => p.theme.radii.lg};
+  box-shadow: ${p => p.theme.shadows.lg};
+  min-width: 300px;
+  z-index: 1000;
+  padding: 16px 0;
+  
+  @media (max-width: ${p => p.theme.breakpoints.lg}) {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid ${p => p.theme.colors.border};
+    margin-top: 8px;
+    padding: 8px 0;
+  }
+`
+
+const RegistrationsDropdown = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: ${p => p.theme.colors.surface};
+  border: 1px solid ${p => p.theme.colors.border};
+  border-radius: ${p => p.theme.radii.lg};
+  box-shadow: ${p => p.theme.shadows.lg};
+  min-width: 250px;
+  z-index: 1000;
+  padding: 16px 0;
+  
+  @media (max-width: ${p => p.theme.breakpoints.lg}) {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid ${p => p.theme.colors.border};
+    margin-top: 8px;
+    padding: 8px 0;
+  }
+`
+
 export function Layout({ children }) {
   const [open, setOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
@@ -345,7 +417,7 @@ export function Layout({ children }) {
               <NavList>
                 <NavItem><NavA to="/" onClick={() => setOpen(false)}>Home</NavA></NavItem>
                 <NavItem>
-                  <NavLink onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+                  <DropdownNavLink onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
                     Services <span>▼</span>
                     {servicesOpen && (
                       <ServicesDropdown onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
@@ -375,10 +447,10 @@ export function Layout({ children }) {
                         </DropdownItem>
                       </ServicesDropdown>
                     )}
-                  </NavLink>
+                  </DropdownNavLink>
                 </NavItem>
                 <NavItem ref={registrationsRef}>
-                  <NavLink onMouseEnter={() => setRegistrationsOpen(true)} onMouseLeave={() => setRegistrationsOpen(false)}>
+                  <DropdownNavLink onMouseEnter={() => setRegistrationsOpen(true)} onMouseLeave={() => setRegistrationsOpen(false)}>
                     Registrations <span>▼</span>
                     {registrationsOpen && (
                       <RegistrationsDropdown onMouseEnter={() => setRegistrationsOpen(true)} onMouseLeave={() => setRegistrationsOpen(false)}>
@@ -402,7 +474,7 @@ export function Layout({ children }) {
                         </DropdownItem>
                       </RegistrationsDropdown>
                     )}
-                  </NavLink>
+                  </DropdownNavLink>
                 </NavItem>
                 <NavItem><NavA to="/about" onClick={() => setOpen(false)}>About</NavA></NavItem>
                 <NavItem><NavA to="/contact" onClick={() => setOpen(false)}>Contact</NavA></NavItem>
