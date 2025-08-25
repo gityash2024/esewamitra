@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Container, Button, Card, Grid, WebImage } from '../../components/ui'
-import { Reveal } from '../../components/Reveal'
+import Reveal from '../../components/Reveal'
 import { Link } from 'react-router-dom'
 
 const Hero = styled.div`
