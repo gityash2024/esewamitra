@@ -385,36 +385,31 @@ const ServicesSection = styled.section`
   margin: 60px 0;
 `
 
-const SectionTitle = styled.h2`
+const SectionHeader = styled.div`
   text-align: center;
-  margin: 0 0 16px 0;
-  font-size: 36px;
-  color: ${p => p.theme.colors.text};
-  font-weight: 700;
+  margin-bottom: 48px;
+
+  h2 {
+    font-size: 36px;
+    color: ${p => p.theme.colors.text};
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  p {
+    font-size: 18px;
+    color: ${p => p.theme.colors.mutedText};
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `
 
-const SectionSubtitle = styled.p`
-  text-align: center;
-  margin: 0 0 48px 0;
-  color: ${p => p.theme.colors.mutedText};
-  font-size: 18px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-`
-
-const ServiceGrid = styled.div`
+const ServicesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
-  
-  @media (max-width: ${p => p.theme.breakpoints.lg}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  @media (max-width: ${p => p.theme.breakpoints.md}) {
-    grid-template-columns: 1fr;
-  }
+  margin-top: 40px;
 `
 
 const ServiceCard = styled(Link)`
@@ -424,6 +419,8 @@ const ServiceCard = styled(Link)`
   padding: 32px 24px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 16px;
   box-shadow: ${p => p.theme.shadows.sm};
   color: ${p => p.theme.colors.text};
@@ -450,6 +447,25 @@ const ServiceCard = styled(Link)`
     &::before {
       left: 0;
     }
+  }
+
+  .icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: ${p => p.theme.colors.primary};
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 14px;
+    color: ${p => p.theme.colors.mutedText};
+    line-height: 1.6;
+    margin-bottom: 24px;
   }
 `
 
@@ -674,17 +690,33 @@ const CTAButton = styled(Link)`
   }
 `
 
+const CompanyInfo = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 32px;
+  color: ${p => p.theme.colors.mutedText};
+  font-size: 0.9rem;
+  font-weight: 500;
+`
+
 export default function Home() {
   return (
     <>
       <Hero>
         <HeroContent>
           <Title>Trusted Legal Services for Citizens and Businesses</Title>
-          <Subtitle>Get expert legal consultation, document drafting, and essential registrations with complete transparency and guaranteed support. Available 24/7 across India.</Subtitle>
+          <Subtitle>Get expert legal consultation, government document services, and essential registrations with complete transparency and guaranteed support. Available 09 AM to 07 PM, Monday to Saturday across India.</Subtitle>
           <CTAGroup>
             <Button as={Link} to="/consult" size="lg">Start Free Consultation</Button>
             <Button as={Link} to="/services/consultation" variant="secondary" size="lg">Explore Services</Button>
           </CTAGroup>
+          <CompanyInfo>
+            <span>🚀 Launched: 20th August 2019</span>
+            <span>⭐ 6+ Years Experience</span>
+            <span>🏆 500+ Happy Customers</span>
+          </CompanyInfo>
         </HeroContent>
         <HeroImageWrap>
           <ImageCarousel />
@@ -697,77 +729,113 @@ export default function Home() {
       </Hero>
 
       <Reveal as={StatsSection}>
-        <h2>Trusted by Thousands</h2>
-        <p>Join the growing community of satisfied clients who trust EsewaMitra for their legal needs</p>
-        <StatsGrid>
-          <StatCard>
-            <div className="number">
-              <CountUp from={0} to={15000} duration={2000} formatter={(v) => v.toLocaleString() + '+'} />
-            </div>
-            <div className="label">Happy Clients</div>
-          </StatCard>
-          <StatCard>
-            <div className="number">
-              <CountUp from={0} to={500} duration={2000} formatter={(v) => v.toString() + '+'} />
-            </div>
-            <div className="label">Expert Lawyers</div>
-          </StatCard>
-          <StatCard>
-            <div className="number">
-              <CountUp from={0} to={98} duration={2000} formatter={(v) => v.toString() + '%'} />
-            </div>
-            <div className="label">Success Rate</div>
-          </StatCard>
-          <StatCard>
-            <div className="number">
-              <CountUp from={0} to={24} duration={2000} formatter={(v) => v.toString() + '/7'} />
-            </div>
-            <div className="label">Support Available</div>
-          </StatCard>
-        </StatsGrid>
+        <Reveal>
+          <SectionHeader>
+            <h2>Trusted by Thousands</h2>
+            <p>Our impact in numbers</p>
+          </SectionHeader>
+          <StatsGrid>
+            <Reveal>
+              <StatCard>
+                <div className="number">
+                  <CountUp end={500} suffix="+" />
+                </div>
+                <div className="label">Happy Customers</div>
+              </StatCard>
+            </Reveal>
+            
+            <Reveal>
+              <StatCard>
+                <div className="number">
+                  <CountUp end={6} suffix=" Years" />
+                </div>
+                <div className="label">Experience</div>
+              </StatCard>
+            </Reveal>
+            
+            <Reveal>
+              <StatCard>
+                <div className="number">
+                  <CountUp end={10} suffix="+" />
+                </div>
+                <div className="label">Expert Lawyers</div>
+              </StatCard>
+            </Reveal>
+            
+            <Reveal>
+              <StatCard>
+                <div className="number">
+                  <CountUp end={5} suffix="+" />
+                </div>
+                <div className="label">Document Experts</div>
+              </StatCard>
+            </Reveal>
+          </StatsGrid>
+        </Reveal>
       </Reveal>
 
       <Reveal as={ServicesSection}>
-        <SectionTitle>Our Core Services</SectionTitle>
-        <SectionSubtitle>Comprehensive legal solutions tailored to your needs with transparent pricing and expert guidance</SectionSubtitle>
-        <ServiceGrid>
-          <Reveal as={ServiceCard} to="/services/consultation">
-            <ServiceIcon>⚖️</ServiceIcon>
-            <ServiceTitle>Legal Consultation</ServiceTitle>
-            <ServiceDescription>Get instant expert advice through video/audio calls. Private, secure, and available 24/7.</ServiceDescription>
-            <ServicePrice>Starting from ₹999</ServicePrice>
-          </Reveal>
-          <Reveal as={ServiceCard} to="/services/documentation">
-            <ServiceIcon>📄</ServiceIcon>
-            <ServiceTitle>Document Drafting</ServiceTitle>
-            <ServiceDescription>Professional legal documents, contracts, agreements, and policies drafted by experts.</ServiceDescription>
-            <ServicePrice>Starting from ₹2,499</ServicePrice>
-          </Reveal>
-          <Reveal as={ServiceCard} to="/services/property">
-            <ServiceIcon>🏠</ServiceIcon>
-            <ServiceTitle>Property Services</ServiceTitle>
-            <ServiceDescription>Complete property legal services including due diligence, registration, and documentation.</ServiceDescription>
-            <ServicePrice>Starting from ₹4,999</ServicePrice>
-          </Reveal>
-          <Reveal as={ServiceCard} to="/registrations/gst">
-            <ServiceIcon>📊</ServiceIcon>
-            <ServiceTitle>GST Registration</ServiceTitle>
-            <ServiceDescription>Fast GST registration with expert assistance and complete documentation support.</ServiceDescription>
-            <ServicePrice>Starting from ₹1,999</ServicePrice>
-          </Reveal>
-          <Reveal as={ServiceCard} to="/registrations/trademark">
-            <ServiceIcon>©️</ServiceIcon>
-            <ServiceTitle>Trademark Registration</ServiceTitle>
-            <ServiceDescription>Comprehensive trademark search, filing, and protection services across all classes.</ServiceDescription>
-            <ServicePrice>Starting from ₹6,999</ServicePrice>
-          </Reveal>
-          <Reveal as={ServiceCard} to="/registrations/msme">
-            <ServiceIcon>🏢</ServiceIcon>
-            <ServiceTitle>MSME Registration</ServiceTitle>
-            <ServiceDescription>Udyam registration for small businesses with government benefits and priority lending.</ServiceDescription>
-            <ServicePrice>Starting from ₹1,499</ServicePrice>
-          </Reveal>
-        </ServiceGrid>
+        <Reveal>
+          <SectionHeader>
+            <h2>Our Services</h2>
+            <p>Comprehensive legal solutions for individuals and businesses</p>
+          </SectionHeader>
+          <ServicesGrid>
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">💼</div>
+                <h3>Legal Consultation</h3>
+                <p>Expert legal advice and guidance for all your legal matters</p>
+                <Button as={Link} to="/services/consultation" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+            
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">🆔</div>
+                <h3>Government Documents</h3>
+                <p>Aadhaar, PAN, Voter ID, Passport, DL, Ration Card, RGHS, Ayushman Card</p>
+                <Button as={Link} to="/services/govt-documents" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+            
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">📋</div>
+                <h3>Forms Submission</h3>
+                <p>Electricity, Water, Gazette, Pension, Life Certificate, Birth/Marriage/Death, Police Verification</p>
+                <Button as={Link} to="/services/forms-submission" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+            
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">🏷️</div>
+                <h3>E-Stamp Services</h3>
+                <p>Digital stamps in denominations of 50, 100, 500 and more</p>
+                <Button as={Link} to="/services/e-stamp" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+            
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">🏠</div>
+                <h3>Property Legal</h3>
+                <p>Property verification, documentation, and legal compliance services</p>
+                <Button as={Link} to="/services/property" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+            
+            <Reveal>
+              <ServiceCard>
+                <div className="icon">🏢</div>
+                <h3>Business Legal</h3>
+                <p>Company formation, compliance, and business legal support</p>
+                <Button as={Link} to="/services/business" size="sm">Learn More</Button>
+              </ServiceCard>
+            </Reveal>
+          </ServicesGrid>
+        </Reveal>
       </Reveal>
 
       <Reveal as={WhyChooseSection}>

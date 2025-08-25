@@ -36,6 +36,56 @@ const Hero = styled.section`
   }
 `
 
+const HeroContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+`
+
+const Title = styled.h1`
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: ${p => p.theme.colors.text};
+`
+
+const Subtitle = styled.p`
+  font-size: 1.4rem;
+  color: ${p => p.theme.colors.mutedText};
+  margin-bottom: 20px;
+`
+
+const Stats = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+`
+
+const StatItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${p => p.theme.colors.primary};
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: ${p => p.theme.typography.heading};
+
+  span {
+    font-size: 0.9rem;
+    color: ${p => p.theme.colors.mutedText};
+    margin-top: 5px;
+  }
+`
+
+const HeroImage = styled.div`
+  width: 100%;
+  max-width: 600px;
+  height: 350px;
+  border-radius: ${p => p.theme.radii.lg};
+  overflow: hidden;
+  margin: 0 auto;
+`
+
 const Section = styled.section`
   margin: 64px 0;
   
@@ -53,6 +103,52 @@ const Section = styled.section`
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+  }
+`
+
+const SectionHeader = styled.div`
+  margin-bottom: 40px;
+  text-align: center;
+
+  h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: ${p => p.theme.colors.text};
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: ${p => p.theme.colors.mutedText};
+  }
+`
+
+const StoryContent = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+
+  @media (max-width: ${p => p.theme.breakpoints.lg}) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: ${p => p.theme.colors.primary};
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: ${p => p.theme.colors.mutedText};
+    margin-bottom: 15px;
+  }
+
+  strong {
+    color: ${p => p.theme.colors.text};
   }
 `
 
@@ -237,42 +333,48 @@ const TeamGrid = styled.div`
   margin-top: 48px;
 `
 
-const TeamCard = styled(Card)`
-  text-align: center;
-  padding: 32px 24px;
+const TeamMember = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: ${p => p.theme.colors.surface};
+  border: 1px solid ${p => p.theme.colors.border};
+  border-radius: ${p => p.theme.radii.lg};
+  box-shadow: ${p => p.theme.shadows.sm};
   transition: all ${p => p.theme.transitions.base};
-  
+
   &:hover {
     transform: translateY(-4px);
-    box-shadow: ${p => p.theme.shadows.lg};
+    box-shadow: ${p => p.theme.shadows.md};
   }
-  
-  .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 0 auto 20px auto;
-    overflow: hidden;
-    border: 4px solid ${p => p.theme.colors.border};
-  }
-  
+`
+
+const MemberImage = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid ${p => p.theme.colors.border};
+`
+
+const MemberInfo = styled.div`
   h3 {
-    margin: 0 0 8px 0;
-    color: ${p => p.theme.colors.text};
     font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: ${p => p.theme.colors.text};
   }
-  
-  .role {
-    color: ${p => p.theme.colors.primary};
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-  
-  p {
+
+  .position {
+    font-size: 0.9rem;
     color: ${p => p.theme.colors.mutedText};
-    line-height: 1.6;
-    margin: 0;
-    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: ${p => p.theme.colors.mutedText};
+    line-height: 1.5;
   }
 `
 
@@ -352,260 +454,240 @@ const AwardsSection = styled.section`
   }
 `
 
+const SuccessGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+`
+
+const SuccessCard = styled(Card)`
+  text-align: center;
+  padding: 32px 24px;
+  transition: all ${p => p.theme.transitions.base};
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: ${p => p.theme.shadows.lg};
+  }
+
+  .number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: ${p => p.theme.colors.primary};
+    margin-bottom: 8px;
+    font-family: ${p => p.theme.typography.heading};
+  }
+
+  .label {
+    color: ${p => p.theme.colors.mutedText};
+    font-weight: 600;
+  }
+
+  p {
+    color: ${p => p.theme.colors.mutedText};
+    line-height: 1.6;
+    margin: 0;
+  }
+`
+
+const OfficeInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 40px;
+
+  @media (max-width: ${p => p.theme.breakpoints.md}) {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .office-details {
+    flex: 1;
+    h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: ${p => p.theme.colors.primary};
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: ${p => p.theme.colors.mutedText};
+      margin-bottom: 10px;
+      strong {
+        color: ${p => p.theme.colors.text};
+      }
+    }
+  }
+
+  .social-links {
+    flex: 1;
+    h4 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: ${p => p.theme.colors.primary};
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.1rem;
+        color: ${p => p.theme.colors.mutedText};
+        text-decoration: none;
+
+        &:hover {
+          color: ${p => p.theme.colors.primary};
+        }
+      }
+    }
+  }
+`
+
 export default function About() {
   return (
     <Container>
       <Hero>
-        <h1>About EsewaMitra</h1>
-        <p>
-          Empowering individuals and businesses with accessible, transparent, and expert legal services 
-          across India. We bridge the gap between complex legal processes and simple solutions.
-        </p>
+        <HeroContent>
+          <Title>About EsewaMitra</Title>
+          <Subtitle>Your trusted partner for government documents and legal services since 2019</Subtitle>
+          <Stats>
+            <StatItem>
+              <CountUp end={500} suffix="+" />
+              <span>Happy Customers</span>
+            </StatItem>
+            <StatItem>
+              <CountUp end={6} suffix=" Years" />
+              <span>Experience</span>
+            </StatItem>
+            <StatItem>
+              <CountUp end={15} suffix="+" />
+              <span>Expert Team</span>
+            </StatItem>
+          </Stats>
+        </HeroContent>
+        <HeroImage>
+          <WebImage 
+            src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3" 
+            alt="EsewaMitra Team" 
+            objectFit="cover"
+          />
+        </HeroImage>
       </Hero>
 
-      <Reveal as={StorySection}>
-        <div className="content">
-          <h2>Our Story</h2>
-          <p>
-            Founded in 2019, EsewaMitra emerged from a simple yet powerful vision: to make legal services 
-            accessible to every citizen and business in India. Our founders, experienced legal professionals 
-            and technology experts, recognized the significant barriers that prevented people from accessing 
-            quality legal assistance.
-          </p>
-          <p>
-            What started as a small team of passionate advocates has grown into India's most trusted digital 
-            legal services platform, serving over 15,000 satisfied clients across 28 states and union territories.
-          </p>
-          <div className="highlight">
-            <strong>Our Mission:</strong> To democratize legal services by combining expert knowledge with 
-            innovative technology, ensuring every Indian has access to quality legal support at transparent, 
-            affordable prices.
-          </div>
-        </div>
-        <div>
-          <WebImage 
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3"
-            alt="Our Story - Legal Innovation"
-            rounded
-            shadow
-          />
-        </div>
-      </Reveal>
+      <Section>
+        <Reveal>
+          <SectionHeader>
+            <h2>Our Story</h2>
+            <p>Building trust through transparency and expertise</p>
+          </SectionHeader>
+          <StoryContent>
+            <div>
+              <h3>Launch & Growth</h3>
+              <p>EsewaMitra was launched on <strong>20th August 2019</strong> with a vision to simplify government document processes for every Indian citizen. What started as a small team has grown into a trusted name in legal services.</p>
+              
+              <h3>Experience & Expertise</h3>
+              <p>With <strong>6+ years of experience</strong> in government body ID cards and documents, we have developed deep expertise in navigating complex bureaucratic processes. Our team understands the intricacies of various government departments and ensures smooth service delivery.</p>
+              
+              <h3>Mission</h3>
+              <p>To democratize legal services and make government document processes accessible, transparent, and hassle-free for every citizen and business in India.</p>
+            </div>
+          </StoryContent>
+        </Reveal>
+      </Section>
 
-      <Reveal as={Section}>
-        <h2>Our Core Values</h2>
-        <p className="subtitle">
-          The principles that guide every decision and interaction at EsewaMitra
-        </p>
-        <ValuesGrid>
-          <Reveal as={ValueCard}>
-            <div className="icon">🎯</div>
-            <h3>Excellence</h3>
-            <p>We strive for perfection in every service, ensuring the highest quality legal solutions and client satisfaction.</p>
-          </Reveal>
-          <Reveal as={ValueCard}>
-            <div className="icon">🤝</div>
-            <h3>Integrity</h3>
-            <p>Honest, transparent communication and ethical practices form the foundation of all our client relationships.</p>
-          </Reveal>
-          <Reveal as={ValueCard}>
-            <div className="icon">💡</div>
-            <h3>Innovation</h3>
-            <p>Continuously evolving our technology and processes to deliver faster, more efficient legal services.</p>
-          </Reveal>
-          <Reveal as={ValueCard}>
-            <div className="icon">🌟</div>
-            <h3>Accessibility</h3>
-            <p>Making legal services affordable and available to everyone, regardless of location or background.</p>
-          </Reveal>
-          <Reveal as={ValueCard}>
-            <div className="icon">⚡</div>
-            <h3>Efficiency</h3>
-            <p>Streamlined processes and expert teams ensure quick turnaround times without compromising quality.</p>
-          </Reveal>
-          <Reveal as={ValueCard}>
-            <div className="icon">🛡️</div>
-            <h3>Trust</h3>
-            <p>Building lasting relationships through reliable service delivery and complete confidentiality.</p>
-          </Reveal>
-        </ValuesGrid>
-      </Reveal>
+      <Section>
+        <Reveal>
+          <SectionHeader>
+            <h2>Leadership Team</h2>
+            <p>Meet the visionaries behind EsewaMitra</p>
+          </SectionHeader>
+          <TeamGrid>
+            <TeamMember>
+              <MemberImage>
+                <WebImage 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3" 
+                  alt="Chandan Lakhara" 
+                  objectFit="cover"
+                />
+              </MemberImage>
+              <MemberInfo>
+                <h3>Chandan Lakhara</h3>
+                <span className="position">CEO of Company</span>
+                <p>5+ years in legal technology and business development. Former legal advisor to customers, passionate about democratizing legal services.</p>
+              </MemberInfo>
+            </TeamMember>
+          </TeamGrid>
+        </Reveal>
+      </Section>
 
-      <Reveal as={Section}>
-        <h2>Our Journey</h2>
-        <p className="subtitle">
-          Key milestones in our mission to transform India's legal services landscape
-        </p>
-        <Timeline>
-          <Reveal as={TimelineItem}>
-            <div className="content">
-              <h4>Platform Launch</h4>
-              <p>Launched EsewaMitra with core legal consultation and documentation services, serving our first 100 clients.</p>
-            </div>
-            <div className="year">2019</div>
-            <div></div>
-          </Reveal>
-          <Reveal as={TimelineItem}>
-            <div></div>
-            <div className="year">2020</div>
-            <div className="content">
-              <h4>Digital Expansion</h4>
-              <p>Expanded to include GST and business registration services, reaching 1,000+ clients across 10 states.</p>
-            </div>
-          </Reveal>
-          <Reveal as={TimelineItem}>
-            <div className="content">
-              <h4>Expert Network</h4>
-              <p>Built a network of 200+ verified legal experts and launched 24/7 consultation services.</p>
-            </div>
-            <div className="year">2021</div>
-            <div></div>
-          </Reveal>
-          <Reveal as={TimelineItem}>
-            <div></div>
-            <div className="year">2022</div>
-            <div className="content">
-              <h4>National Presence</h4>
-              <p>Achieved pan-India coverage with 5,000+ satisfied clients and comprehensive legal service portfolio.</p>
-            </div>
-          </Reveal>
-          <Reveal as={TimelineItem}>
-            <div className="content">
-              <h4>AI Integration</h4>
-              <p>Integrated AI-powered legal assistance and launched instant document generation for faster service delivery.</p>
-            </div>
-            <div className="year">2023</div>
-            <div></div>
-          </Reveal>
-          <Reveal as={TimelineItem}>
-            <div></div>
-            <div className="year">2024</div>
-            <div className="content">
-              <h4>Industry Leadership</h4>
-              <p>Crossed 15,000 clients milestone and established partnerships with leading legal institutions across India.</p>
-            </div>
-          </Reveal>
-        </Timeline>
-      </Reveal>
+      <Section>
+        <Reveal>
+          <SectionHeader>
+            <h2>Our Success</h2>
+            <p>Numbers that speak for themselves</p>
+          </SectionHeader>
+          <SuccessGrid>
+            <SuccessCard>
+              <div className="number">500+</div>
+              <div className="label">Happy Customers</div>
+              <p>Satisfied clients across India who trust us with their legal needs</p>
+            </SuccessCard>
+            <SuccessCard>
+              <div className="number">10+</div>
+              <div className="label">Expert Lawyers</div>
+              <p>Qualified legal professionals with years of experience</p>
+            </SuccessCard>
+            <SuccessCard>
+              <div className="number">5+</div>
+              <div className="label">Document Experts</div>
+              <p>Specialists in government documentation and processes</p>
+            </SuccessCard>
+            <SuccessCard>
+              <div className="number">24/7</div>
+              <div className="label">Support Available</div>
+              <p>Round-the-clock assistance for urgent legal matters</p>
+            </SuccessCard>
+          </SuccessGrid>
+        </Reveal>
+      </Section>
 
-      <Reveal as={StatsSection}>
-        <h2>Our Impact</h2>
-        <div className="stats-grid">
-          <div className="stat">
-            <div className="number">
-              <CountUp from={0} to={15000} duration={2000} formatter={(v) => v.toLocaleString() + '+'} />
+      <Section>
+        <Reveal>
+          <SectionHeader>
+            <h2>Office & Contact</h2>
+            <p>Visit us at our head office</p>
+          </SectionHeader>
+          <OfficeInfo>
+            <div className="office-details">
+              <h3>Head Office</h3>
+              <p><strong>Address:</strong> 185 Ganga Sagar Scheme, Vaishali Nagar, Jaipur 302021</p>
+              <p><strong>Phone:</strong> +91 7691852665</p>
+              <p><strong>Email:</strong> esewamitra@gmail.com</p>
+              <p><strong>Timing:</strong> 09 AM to 07 PM, Monday to Saturday</p>
             </div>
-            <div className="label">Happy Clients</div>
-          </div>
-          <div className="stat">
-            <div className="number">
-              <CountUp from={0} to={500} duration={2000} formatter={(v) => v.toString() + '+'} />
+            <div className="social-links">
+              <h4>Follow Us</h4>
+              <div className="social-grid">
+                <a href="#" className="social-link">
+                  <span>📘</span>
+                  <span>Facebook: E Sewa Mitra</span>
+                </a>
+                <a href="#" className="social-link">
+                  <span>📷</span>
+                  <span>Instagram: esewamitra</span>
+                </a>
+              </div>
             </div>
-            <div className="label">Legal Experts</div>
-          </div>
-          <div className="stat">
-            <div className="number">
-              <CountUp from={0} to={28} duration={2000} formatter={(v) => v.toString()} />
-            </div>
-            <div className="label">States Covered</div>
-          </div>
-          <div className="stat">
-            <div className="number">
-              <CountUp from={0} to={98} duration={2000} formatter={(v) => v.toString() + '%'} />
-            </div>
-            <div className="label">Success Rate</div>
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal as={Section}>
-        <h2>Leadership Team</h2>
-        <p className="subtitle">
-          Meet the experienced professionals driving EsewaMitra's vision and growth
-        </p>
-        <TeamGrid>
-          <Reveal as={TeamCard}>
-            <div className="avatar">
-              <WebImage 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=240&auto=format&fit=crop&ixlib=rb-4.0.3"
-                alt="Rajesh Kumar - CEO"
-                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-              />
-            </div>
-            <h3>Rajesh Kumar</h3>
-            <div className="role">Chief Executive Officer</div>
-            <p>
-              20+ years in legal technology and business development. Former legal advisor to Fortune 500 companies, 
-              passionate about democratizing legal services.
-            </p>
-          </Reveal>
-          <Reveal as={TeamCard}>
-            <div className="avatar">
-              <WebImage 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=100&auto=format&fit=crop&ixlib=rb-4.0.3"
-                alt="Priya Sharma - CTO"
-                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-              />
-            </div>
-            <h3>Priya Sharma</h3>
-            <div className="role">Chief Technology Officer</div>
-            <p>
-              Expert in AI and legal tech with 15+ years at leading technology companies. Spearheads our 
-              digital innovation and platform development.
-            </p>
-          </Reveal>
-          <Reveal as={TeamCard}>
-            <div className="avatar">
-              <WebImage 
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=240&auto=format&fit=crop&ixlib=rb-4.0.3"
-                alt="Advocate Amit Patel - CLO"
-                style={{width: '100%', height: '100%', objectFit: 'cover'}}
-              />
-            </div>
-            <h3>Advocate Amit Patel</h3>
-            <div className="role">Chief Legal Officer</div>
-            <p>
-              Senior advocate with 25+ years of practice in corporate and civil law. Leads our legal expert 
-              network and ensures service quality standards.
-            </p>
-          </Reveal>
-        </TeamGrid>
-      </Reveal>
-
-      <Reveal as={AwardsSection}>
-        <h2 style={{textAlign: 'center', marginBottom: '16px'}}>Awards & Recognition</h2>
-        <p style={{textAlign: 'center', color: '#486873', marginBottom: '0'}}>
-          Acknowledgments of our commitment to excellence in legal services
-        </p>
-        <div className="awards-grid">
-          <div className="award">
-            <div className="icon">🏆</div>
-            <h4>Best Legal Tech Platform 2023</h4>
-            <p>Recognized by Indian Legal Technology Awards for innovation in legal service delivery</p>
-          </div>
-          <div className="award">
-            <div className="icon">⭐</div>
-            <h4>Customer Choice Award 2022</h4>
-            <p>Voted by clients as the most trusted legal services platform in India</p>
-          </div>
-          <div className="award">
-            <div className="icon">🎖️</div>
-            <h4>Excellence in Digital Services</h4>
-            <p>Honored by Government of India for contribution to digital legal services ecosystem</p>
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal as={Section} style={{textAlign: 'center', background: `linear-gradient(135deg, rgba(20,107,102,0.12) 0%, rgba(242,153,74,0.08) 100%)`, padding: '48px 32px', borderRadius: '16px', border: '1px solid #E3EEE9'}}>
-        <h2>Ready to Experience the Difference?</h2>
-        <p style={{color: '#486873', marginBottom: '24px', fontSize: '1.1rem'}}>
-          Join thousands of satisfied clients who trust EsewaMitra for their legal needs
-        </p>
-        <div style={{display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap'}}>
-          <Button as={Link} to="/consult" size="lg">Get Free Consultation</Button>
-          <Button as={Link} to="/contact" variant="secondary" size="lg">Contact Us</Button>
-        </div>
-      </Reveal>
+          </OfficeInfo>
+        </Reveal>
+      </Section>
     </Container>
   )
 } 

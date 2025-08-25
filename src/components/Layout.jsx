@@ -229,6 +229,50 @@ const FooterInner = styled.div`
 const FooterSection = styled.div`
   h4 { margin: 0 0 16px 0; color: ${p => p.theme.colors.text}; font-weight: 700; font-size: 16px; }
   p { margin: 0 0 12px 0; color: ${p => p.theme.colors.mutedText}; line-height: 1.6; font-size: 14px; }
+  
+  .contact-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    
+    span:first-child {
+      font-size: 1.2rem;
+      margin-top: 2px;
+    }
+    
+    div {
+      font-size: 14px;
+      line-height: 1.4;
+      
+      strong {
+        color: ${p => p.theme.colors.text};
+      }
+    }
+  }
+  
+  .social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: ${p => p.theme.colors.mutedText};
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s ease;
+      
+      &:hover {
+        color: ${p => p.theme.colors.primary};
+      }
+      
+      span:first-child {
+        font-size: 1.2rem;
+      }
+    }
+  }
 `
 
 const FooterBrand = styled.div`
@@ -300,29 +344,65 @@ export function Layout({ children }) {
             <Nav $open={open}>
               <NavList>
                 <NavItem><NavA to="/" onClick={() => setOpen(false)}>Home</NavA></NavItem>
-                <NavItem ref={servicesRef}>
-                  <DropdownTrigger onClick={() => setServicesOpen(!servicesOpen)} onMouseEnter={() => setServicesOpen(true)} aria-expanded={servicesOpen} aria-haspopup="true">
-                    Services <ArrowIcon $open={servicesOpen}>▼</ArrowIcon>
-                  </DropdownTrigger>
-                  <DropdownMenu $open={servicesOpen} onMouseLeave={() => setServicesOpen(false)}>
-                    <DropdownItem to="/services/consultation" onClick={() => { setOpen(false); setServicesOpen(false); }}><strong>Legal Consultation</strong><span>Instant audio/video expert connect</span></DropdownItem>
-                    <DropdownItem to="/services/documentation" onClick={() => { setOpen(false); setServicesOpen(false); }}><strong>Document Drafting</strong><span>Contracts, policies, and custom legal docs</span></DropdownItem>
-                    <DropdownItem to="/services/property" onClick={() => { setOpen(false); setServicesOpen(false); }}><strong>Property Services</strong><span>Due diligence, sale deeds, registration</span></DropdownItem>
-                    <DropdownItem to="/services/business" onClick={() => { setOpen(false); setServicesOpen(false); }}><strong>Business Legal</strong><span>Compliance, contracts, employment</span></DropdownItem>
-                  </DropdownMenu>
+                <NavItem>
+                  <NavLink onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+                    Services <span>▼</span>
+                    {servicesOpen && (
+                      <ServicesDropdown onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+                        <DropdownItem to="/services/consultation">
+                          <h4>Legal Consultation</h4>
+                          <p>Expert legal advice and guidance for individuals and businesses</p>
+                        </DropdownItem>
+                        <DropdownItem to="/services/govt-documents">
+                          <h4>Govt Documents</h4>
+                          <p>Aadhaar, PAN, Voter ID, Passport, DL, Ration Card, RGHS, Ayushman Card</p>
+                        </DropdownItem>
+                        <DropdownItem to="/services/forms-submission">
+                          <h4>Forms Submission Services</h4>
+                          <p>Electricity, Water, Gazette, Pension, Life Certificate, Birth/Marriage/Death, Police Verification, Certificates</p>
+                        </DropdownItem>
+                        <DropdownItem to="/services/e-stamp">
+                          <h4>E-Stamp Services</h4>
+                          <p>50, 100, 500 and other denomination stamps available</p>
+                        </DropdownItem>
+                        <DropdownItem to="/services/property">
+                          <h4>Property Legal Services</h4>
+                          <p>Property verification, documentation, and legal compliance</p>
+                        </DropdownItem>
+                        <DropdownItem to="/services/business">
+                          <h4>Business Legal Services</h4>
+                          <p>Company formation, compliance, and business legal support</p>
+                        </DropdownItem>
+                      </ServicesDropdown>
+                    )}
+                  </NavLink>
                 </NavItem>
                 <NavItem ref={registrationsRef}>
-                  <DropdownTrigger onClick={() => setRegistrationsOpen(!registrationsOpen)} onMouseEnter={() => setRegistrationsOpen(true)} aria-expanded={registrationsOpen} aria-haspopup="true">
-                    Registrations <ArrowIcon $open={registrationsOpen}>▼</ArrowIcon>
-                  </DropdownTrigger>
-                  <DropdownMenu $open={registrationsOpen} onMouseLeave={() => setRegistrationsOpen(false)}>
-                    <DropdownItem to="/registrations/gst" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>GST Registration</strong><span>Complete GST registration with expert guidance, document preparation, and fast approval within 3-7 days</span></DropdownItem>
-                    <DropdownItem to="/registrations/msme" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>MSME Registration</strong><span>Udyam registration for small businesses with government benefits, subsidies, and priority lending access</span></DropdownItem>
-                    <DropdownItem to="/registrations/trademark" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>Trademark Registration</strong><span>Comprehensive trademark search, filing, monitoring, and protection services across all classes</span></DropdownItem>
-                    <DropdownItem to="/registrations/fssai" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>FSSAI Registration</strong><span>Food business license for manufacturers, retailers, and restaurants with complete compliance support</span></DropdownItem>
-                    <DropdownItem to="/registrations/iso" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>ISO Certification</strong><span>Quality management certification (ISO 9001, 14001, 27001) with audit and implementation support</span></DropdownItem>
-                    <DropdownItem to="/registrations/iec" onClick={() => { setOpen(false); setRegistrationsOpen(false); }}><strong>IEC Registration</strong><span>Import Export Code for international trade with customs clearance and documentation assistance</span></DropdownItem>
-                  </DropdownMenu>
+                  <NavLink onMouseEnter={() => setRegistrationsOpen(true)} onMouseLeave={() => setRegistrationsOpen(false)}>
+                    Registrations <span>▼</span>
+                    {registrationsOpen && (
+                      <RegistrationsDropdown onMouseEnter={() => setRegistrationsOpen(true)} onMouseLeave={() => setRegistrationsOpen(false)}>
+                        <DropdownItem to="/registrations/gst">
+                          <h4>GST Registration</h4>
+                        </DropdownItem>
+                        <DropdownItem to="/registrations/msme">
+                          <h4>MSME Registration</h4>
+                        </DropdownItem>
+                        <DropdownItem to="/registrations/trademark">
+                          <h4>Trademark Registration</h4>
+                        </DropdownItem>
+                        <DropdownItem to="/registrations/fssai">
+                          <h4>FSSAI Registration</h4>
+                        </DropdownItem>
+                        <DropdownItem to="/registrations/iso">
+                          <h4>ISO Certification</h4>
+                        </DropdownItem>
+                        <DropdownItem to="/registrations/iec">
+                          <h4>IEC Registration</h4>
+                        </DropdownItem>
+                      </RegistrationsDropdown>
+                    )}
+                  </NavLink>
                 </NavItem>
                 <NavItem><NavA to="/about" onClick={() => setOpen(false)}>About</NavA></NavItem>
                 <NavItem><NavA to="/contact" onClick={() => setOpen(false)}>Contact</NavA></NavItem>
@@ -345,17 +425,60 @@ export function Layout({ children }) {
               <h4>EsewaMitra</h4>
             </FooterBrand>
             <p>Trusted platform for comprehensive legal services across India. We simplify legal processes with expert guidance and transparent pricing.</p>
-            <p>Available 24/7 • Trusted by 10,000+ clients</p>
+            <p><strong>Available:</strong> 09 AM to 07 PM, Monday to Saturday</p>
+            <p><strong>500+ Happy Customers • 10+ Expert Lawyers • 5+ Document Experts</strong></p>
             <Newsletter onSubmit={(e)=>e.preventDefault()}>
               <input placeholder="Enter your email" />
               <button type="submit">Subscribe</button>
             </Newsletter>
           </FooterSection>
+          
+          <FooterSection>
+            <h4>Contact Info</h4>
+            <div className="contact-item">
+              <span>📍</span>
+              <div>
+                <strong>Head Office:</strong><br />
+                185 Ganga Sagar Scheme, Vaishali Nagar<br />
+                Jaipur 302021
+              </div>
+            </div>
+            <div className="contact-item">
+              <span>📞</span>
+              <div>
+                <strong>Phone:</strong><br />
+                +91 7691852665
+              </div>
+            </div>
+            <div className="contact-item">
+              <span>✉️</span>
+              <div>
+                <strong>Email:</strong><br />
+                esewamitra@gmail.com
+              </div>
+            </div>
+          </FooterSection>
+          
+          <FooterSection>
+            <h4>Social Media</h4>
+            <div className="social-links">
+              <a href="#" className="social-link">
+                <span>📘</span>
+                <span>Facebook: E Sewa Mitra</span>
+              </a>
+              <a href="#" className="social-link">
+                <span>📷</span>
+                <span>Instagram: esewamitra</span>
+              </a>
+            </div>
+          </FooterSection>
           <FooterSection>
             <h4>Services</h4>
             <FooterLinks>
               <Link to="/services/consultation">Legal Consultation</Link>
-              <Link to="/services/documentation">Document Drafting</Link>
+              <Link to="/services/govt-documents">Govt Documents</Link>
+              <Link to="/services/forms-submission">Forms Submission</Link>
+              <Link to="/services/e-stamp">E-Stamp Services</Link>
               <Link to="/services/property">Property Services</Link>
               <Link to="/services/business">Business Legal</Link>
             </FooterLinks>
@@ -365,9 +488,9 @@ export function Layout({ children }) {
             <FooterLinks>
               <Link to="/registrations/gst">GST Registration</Link>
               <Link to="/registrations/msme">MSME Registration</Link>
-              <Link to="/registrations/trademark">Trademark</Link>
+              <Link to="/registrations/trademark">Trademark Registration</Link>
               <Link to="/registrations/fssai">FSSAI Registration</Link>
-              <Link to="/registrations/iso">ISO Registration</Link>
+              <Link to="/registrations/iso">ISO Certification</Link>
               <Link to="/registrations/iec">IEC Registration</Link>
             </FooterLinks>
           </FooterSection>

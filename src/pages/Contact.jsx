@@ -195,6 +195,79 @@ const FAQSection = styled.section`
   }
 `
 
+const ContactInfo = styled.div`
+  display: grid;
+  gap: 24px;
+  margin-bottom: 48px;
+`
+
+const OfficeSection = styled.div`
+  margin: 48px 0;
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 32px;
+    color: ${p => p.theme.colors.text};
+  }
+`
+
+const OfficeCard = styled.div`
+  background: ${p => p.theme.colors.surface};
+  border: 1px solid ${p => p.theme.colors.border};
+  border-radius: ${p => p.theme.radii.lg};
+  padding: 32px;
+  box-shadow: ${p => p.theme.shadows.md};
+  
+  .office-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    
+    h3 {
+      color: ${p => p.theme.colors.primary};
+      margin: 0;
+    }
+    
+    .status {
+      background: ${p => p.theme.colors.success};
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+  
+  .office-details {
+    margin-bottom: 24px;
+    
+    p {
+      margin: 8px 0;
+      color: ${p => p.theme.colors.text};
+      
+      strong {
+        color: ${p => p.theme.colors.primary};
+      }
+    }
+  }
+  
+  .office-features {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    
+    span {
+      background: ${p => p.theme.colors.background};
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: ${p => p.theme.colors.mutedText};
+      border: 1px solid ${p => p.theme.colors.border};
+    }
+  }
+`
+
 export default function Contact() {
   return (
     <>
@@ -240,88 +313,58 @@ export default function Contact() {
             </form>
           </FormCard>
 
-          <div style={{display: 'grid', gap: '24px'}}>
-            <Reveal as={InfoCard}>
-              <h3>
-                <span className="icon">📞</span>
-                Call Us
-              </h3>
-              <p>Speak directly with our legal experts</p>
-              <div className="highlight">+91 98765 43210</div>
-              <div className="highlight">+91 87654 32109</div>
-              <p style={{fontSize: '12px', marginTop: '8px'}}>Mon-Sat: 9 AM - 8 PM</p>
+          <ContactInfo>
+            <Reveal>
+              <InfoCard>
+                <div className="icon">📞</div>
+                <h3>Call Us</h3>
+                <p>Available 24/7 for urgent legal matters</p>
+                <a href="tel:+917691852665">+91 7691852665</a>
+              </InfoCard>
             </Reveal>
+            
+            <Reveal>
+              <InfoCard>
+                <div className="icon">✉️</div>
+                <h3>Email Us</h3>
+                <p>Get detailed responses within 2 hours</p>
+                <a href="mailto:esewamitra@gmail.com">esewamitra@gmail.com</a>
+              </InfoCard>
+            </Reveal>
+            
+            <Reveal>
+              <InfoCard>
+                <div className="icon">💬</div>
+                <h3>Live Chat</h3>
+                <p>Instant support from legal experts</p>
+                <span>Available 09 AM to 07 PM</span>
+              </InfoCard>
+            </Reveal>
+          </ContactInfo>
 
-            <Reveal as={InfoCard}>
-              <h3>
-                <span className="icon">✉️</span>
-                Email Us
-              </h3>
-              <p>Get detailed responses to your queries</p>
-              <div className="highlight">support@esewamitra.com</div>
-              <div className="highlight">legal@esewamitra.com</div>
-              <p style={{fontSize: '12px', marginTop: '8px'}}>Response within 24 hours</p>
+          <OfficeSection>
+            <Reveal>
+              <h2>Our Office</h2>
+              <OfficeCard>
+                <div className="office-header">
+                  <h3>Jaipur Head Office</h3>
+                  <span className="status">Open Now</span>
+                </div>
+                <div className="office-details">
+                  <p><strong>Address:</strong> 185 Ganga Sagar Scheme, Vaishali Nagar, Jaipur 302021</p>
+                  <p><strong>Phone:</strong> +91 7691852665</p>
+                  <p><strong>Email:</strong> esewamitra@gmail.com</p>
+                  <p><strong>Timing:</strong> 09 AM to 07 PM, Monday to Saturday</p>
+                </div>
+                <div className="office-features">
+                  <span>🚗 Free Parking</span>
+                  <span>♿ Wheelchair Accessible</span>
+                  <span>📱 Digital Services</span>
+                </div>
+              </OfficeCard>
             </Reveal>
-
-            <Reveal as={InfoCard}>
-              <h3>
-                <span className="icon">💬</span>
-                Live Chat
-              </h3>
-              <p>Instant assistance for urgent matters</p>
-              <div className="highlight">Available 24/7</div>
-              <p style={{fontSize: '12px', marginTop: '8px'}}>Click the chat icon on any page</p>
-            </Reveal>
-          </div>
+          </OfficeSection>
         </Grid>
-      </Reveal>
-
-      <Reveal as={LocationsSection}>
-        <h2>Our Presence</h2>
-        <p className="subtitle">
-          We serve clients across India with local expertise and national reach
-        </p>
-        <div className="locations-grid">
-          <LocationCard>
-            <div className="city-icon">🏢</div>
-            <h4>Delhi NCR</h4>
-            <p>Our headquarters with full-service legal support for North India region</p>
-            <div className="contact-info">
-              <div>📍 Connaught Place, New Delhi</div>
-              <div>📞 +91 11 4567 8900</div>
-            </div>
-          </LocationCard>
-          
-          <LocationCard>
-            <div className="city-icon">🌆</div>
-            <h4>Mumbai</h4>
-            <p>Corporate legal services hub serving Western India business community</p>
-            <div className="contact-info">
-              <div>📍 Bandra Kurla Complex, Mumbai</div>
-              <div>📞 +91 22 6789 0123</div>
-            </div>
-          </LocationCard>
-          
-          <LocationCard>
-            <div className="city-icon">🏙️</div>
-            <h4>Bangalore</h4>
-            <p>Technology and startup legal services center for South India</p>
-            <div className="contact-info">
-              <div>📍 Koramangala, Bangalore</div>
-              <div>📞 +91 80 8901 2345</div>
-            </div>
-          </LocationCard>
-          
-          <LocationCard>
-            <div className="city-icon">🌟</div>
-            <h4>Pan-India</h4>
-            <p>Digital services available across all 28 states and 8 union territories</p>
-            <div className="contact-info">
-              <div>🌐 Online Platform</div>
-              <div>📱 Mobile App Available</div>
-            </div>
-          </LocationCard>
-        </div>
       </Reveal>
 
       <Reveal as={FAQSection}>
