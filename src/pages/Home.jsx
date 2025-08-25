@@ -839,8 +839,10 @@ export default function Home() {
       </Reveal>
 
       <Reveal as={WhyChooseSection}>
-        <SectionTitle>Why Choose EsewaMitra?</SectionTitle>
-        <SectionSubtitle>Experience the difference with our transparent, expert-driven approach to legal services</SectionSubtitle>
+        <SectionHeader>
+          <h2>Why Choose EsewaMitra?</h2>
+          <p>Experience the difference with our transparent, expert-driven approach to legal services</p>
+        </SectionHeader>
         <FeatureGrid>
           <FeatureCard>
             <FeatureIcon>🎯</FeatureIcon>
@@ -876,8 +878,10 @@ export default function Home() {
       </Reveal>
 
       <Reveal as={TestimonialsSection}>
-        <SectionTitle>What Our Clients Say</SectionTitle>
-        <SectionSubtitle>Real feedback from thousands of satisfied clients across India</SectionSubtitle>
+        <SectionHeader>
+          <h2>What Our Clients Say</h2>
+          <p>Real feedback from thousands of satisfied clients across India</p>
+        </SectionHeader>
         <TestimonialGrid>
           <TestimonialCard>
             <TestimonialText>"EsewaMitra made GST registration incredibly simple. Their expert guided me through every step and completed everything in just 3 days!"</TestimonialText>
@@ -929,8 +933,10 @@ export default function Home() {
 
       <Reveal as={CallToActionSection}>
         <div>
-          <SectionTitle>Ready to Get Started?</SectionTitle>
-          <SectionSubtitle>Join thousands of satisfied clients and experience hassle-free legal services</SectionSubtitle>
+          <SectionHeader>
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of satisfied clients and experience hassle-free legal services</p>
+          </SectionHeader>
           <CTAButtons>
             <Button as={Link} to="/consult" size="lg">Get Free Consultation</Button>
             <Button as={Link} to="/contact" variant="secondary" size="lg">Contact Us</Button>
