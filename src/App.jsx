@@ -22,8 +22,8 @@ import Consultation from './pages/services/Consultation'
 import Documentation from './pages/services/Documentation'
 import Property from './pages/services/Property'
 import Business from './pages/services/Business'
-import Forms from './pages/services/Forms'
-import Stamps from './pages/services/Stamps'
+import FormsSubmissionService from './pages/services/FormsSubmissionService'
+import EStampService from './pages/services/EStampService'
 
 // Registration Pages
 import GST from './pages/registrations/GST'
@@ -62,8 +62,8 @@ export default function App() {
             {/* Service Routes */}
             <Route path="/services/consultation" element={<Consultation />} />
             <Route path="/services/govt-documents" element={<Documentation />} />
-            <Route path="/services/forms-submission" element={<Forms />} />
-            <Route path="/services/e-stamp" element={<Stamps />} />
+            <Route path="/services/forms-submission" element={<FormsSubmissionService />} />
+            <Route path="/services/e-stamp" element={<EStampService />} />
             <Route path="/services/documentation" element={<Documentation />} />
             <Route path="/services/property" element={<Property />} />
             <Route path="/services/business" element={<Business />} />
